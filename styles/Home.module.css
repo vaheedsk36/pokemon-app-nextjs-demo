@@ -1,9 +1,16 @@
 .grid{
   display: grid;
   grid-template-columns: repeat(4,1fr);
-  grid-gap: 10px;
+  grid-gap: 5px;
 }
 
 .card img{
   max-height: 200px;
+
+}
+
+.card a{
+  text-decoration: none;
+  color: black;
+  
 }
