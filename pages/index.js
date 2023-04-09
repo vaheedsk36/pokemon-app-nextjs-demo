@@ -3,20 +3,33 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 
-export default function Home() {
-  const [pokemon,setPokemon] = useState([]);
+export async function getServerSideProps(){
+  const response = await fetch(
+    "https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json"
+  );
 
-  useEffect(()=>{
-    async function getPokemon(){
-      const response = await fetch(
-        "https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json"
-      );
-      setPokemon(await response.json());
+  return{
+    props: {
+      pokemon: await response.json(),
     }
-    getPokemon();
-  },[]);
+  }
+
+}
+
+export default function Home({pokemon}) {
+  // const [pokemon,setPokemon] = useState([]);
+
+  // useEffect(()=>{
+  //   async function getPokemon(){
+  //     const response = await fetch(
+  //       "https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json"
+  //     );
+  //     setPokemon(await response.json());
+  //   }
+  //   getPokemon();
+  // },[]);
 
   return (
     <>
